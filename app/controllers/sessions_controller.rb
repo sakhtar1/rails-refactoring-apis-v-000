@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def create
     gits = GithubService.new
-    session[:token] = gitserv.authenticate!(ENV["GITHUB_CLIENT"], ENV["GITHUB_SECRET"], params[:code])
+    session[:token] = gits.authenticate!(ENV["GITHUB_CLIENT"], ENV["GITHUB_SECRET"], params[:code])
     session[:username] = gits.get_username
 
     redirect_to '/'
